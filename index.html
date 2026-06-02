@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Webnovel</title>
+  <title>31 Days - Webnovel</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,7 +11,7 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <style>
-    /* ── Variables ──────────────────────────────────────────────── */
+
     :root {
       --bg:           #050505;
       --bg-card:      #0d0d0d;
@@ -26,12 +26,11 @@
       --radius:       3px;
       --topbar-h:     48px;
 
-      /* ── Cover image size — edit these two to resize ── */
+
       --cover-w: 340px;
       --cover-h: 480px;
     }
 
-    /* ── Reset ──────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; }
 
@@ -45,7 +44,6 @@
       overflow: hidden;
     }
 
-    /* ── Top bar ────────────────────────────────────────────────── */
     #topbar {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -99,15 +97,13 @@
       max-width: 400px;
       text-align: right;
     }
-
-    /* ── Shell ──────────────────────────────────────────────────── */
+    
     #shell {
       display: flex;
       height: 100vh;
       padding-top: var(--topbar-h);
     }
 
-    /* ── Sidebar ────────────────────────────────────────────────── */
     #sidebar {
       width: var(--sidebar-w);
       flex-shrink: 0;
@@ -135,7 +131,6 @@
       flex: 1;
     }
 
-    /* Search */
     .search-wrap {
       position: relative;
       padding: 0 16px;
@@ -168,7 +163,6 @@
       font-size: 0.85rem;
     }
 
-    /* Controls row */
     .list-controls {
       display: flex;
       align-items: center;
@@ -181,7 +175,6 @@
       text-transform: uppercase;
     }
 
-    /* Sort dropdown */
     #sort-select {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -205,7 +198,6 @@
     #sort-select:hover { border-color: var(--border-hover); color: var(--text-main); }
     #sort-select option { background: #111; color: var(--text-main); }
 
-    /* Chapter list */
     #chapter-list { list-style: none; }
     #chapter-list li { border-top: 1px solid var(--border); }
     #chapter-list li:last-child { border-bottom: 1px solid var(--border); }
@@ -245,7 +237,6 @@
     #chapter-list a:hover .ch-name,
     #chapter-list a:hover .ch-num { color: var(--text-main); }
 
-    /* Skeleton */
     .skeleton-item {
       border-top: 1px solid var(--border);
       padding: 13px 16px;
@@ -275,7 +266,6 @@
       line-height: 1.6;
     }
 
-    /* ── Reader panel ───────────────────────────────────────────── */
     #reader-panel {
       flex: 1;
       height: 100%;
@@ -290,8 +280,7 @@
       max-width: 680px;
       padding: 0 40px;
     }
-
-    /* ── Cover / empty state ────────────────────────────────────── */
+    
     #reader-empty {
       display: flex;
       align-items: center;
@@ -299,7 +288,6 @@
       min-height: 60vh;
     }
 
-    /* ↓↓ Change --cover-w and --cover-h at the top of :root to resize ↓↓ */
     #cover-img {
       width: var(--cover-w);
       height: var(--cover-h);
@@ -309,7 +297,6 @@
       opacity: 0.85;
     }
 
-    /* ── Loaded chapter ─────────────────────────────────────────── */
     #reader-content { display: none; }
 
     .reader-chapter-num {
@@ -333,7 +320,6 @@
       line-height: 1.2;
     }
 
-    /* Prose */
     .prose { font-size: 0.97rem; line-height: 1.9; color: var(--text-main); }
     .prose p { margin-bottom: 1.4em; }
     .prose h1, .prose h2, .prose h3, .prose h4 {
@@ -360,7 +346,6 @@
     .prose a { color: var(--text-muted); text-decoration: underline; text-underline-offset: 3px; }
     .prose a:hover { color: var(--text-main); }
 
-    /* Reader nav */
     .reader-nav {
       display: flex;
       justify-content: space-between;
@@ -386,7 +371,6 @@
     .nav-btn:hover:not(:disabled) { border-color: var(--border-hover); color: var(--text-main); }
     .nav-btn:disabled { opacity: 0.18; cursor: default; }
 
-    /* Fade */
     .fade-in {
       animation: fadeIn 0.28s ease forwards;
     }
@@ -395,7 +379,6 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── Mobile ─────────────────────────────────────────────────── */
     @media (max-width: 720px) {
       :root { --sidebar-w: 260px; }
       #sidebar {
@@ -413,7 +396,6 @@
 </head>
 <body>
 
-<!-- ── Top bar ──────────────────────────────────────────────────── -->
 <div id="topbar">
   <button id="toggle-sidebar" aria-label="Toggle sidebar">
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
@@ -426,10 +408,8 @@
   <span id="topbar-chapter"></span>
 </div>
 
-<!-- ── Shell ────────────────────────────────────────────────────── -->
 <div id="shell">
 
-  <!-- Sidebar -->
   <aside id="sidebar">
     <div class="sidebar-inner">
 
@@ -456,21 +436,12 @@
 
     </div>
   </aside>
-
-  <!-- Reader -->
   <main id="reader-panel">
     <div class="reader-inner">
-
-      <!-- Empty / cover state -->
       <div id="reader-empty">
-        <!--
-          Cover image — replace "image.png" with your file name.
-          To resize: edit --cover-w and --cover-h in the :root block at the top of <style>.
-        -->
         <img id="cover-img" src="image.png" alt="Cover" />
       </div>
 
-      <!-- Chapter content -->
       <div id="reader-content">
         <span class="reader-chapter-num" id="reader-num"></span>
         <h1 class="reader-chapter-title" id="reader-title"></h1>
@@ -484,16 +455,12 @@
     </div>
   </main>
 
-</div><!-- /shell -->
+</div>
 
 <script>
-  /* ═══════════════════════════════════════════════════════════════
-     CONFIG — edit these three lines
-  ═══════════════════════════════════════════════════════════════ */
-  const GITHUB_USER = 'YOUR_GITHUB_USERNAME';
-  const GITHUB_REPO = 'YOUR_GITHUB_REPO';
-  const SITE_TITLE  = 'Your Story Title';
-  /* ─────────────────────────────────────────────────────────────── */
+  const GITHUB_USER = '31days-wn';
+  const GITHUB_REPO = '31days-wn.github.io';
+  const SITE_TITLE  = '31 Days';
 
   let allChapters  = [];
   let sortAsc      = false;
@@ -520,13 +487,11 @@
   document.title          = SITE_TITLE;
   topbarTitle.textContent = SITE_TITLE;
 
-  /* ── Sidebar toggle ─────────────────────────────────────────── */
   toggleBtn.addEventListener('click', () => {
     sidebarOpen = !sidebarOpen;
     sidebar.classList.toggle('collapsed', !sidebarOpen);
   });
 
-  /* ── Helpers ────────────────────────────────────────────────── */
   function extractNumber(filename) {
     const m = filename.match(/(\d+)/);
     return m ? parseInt(m[1], 10) : 0;
@@ -571,7 +536,6 @@
     return list;
   }
 
-  /* ── Render list ────────────────────────────────────────────── */
   function renderList(activeSlug) {
     const visible = getVisible();
     countEl.textContent = `${visible.length} ch`;
@@ -612,7 +576,6 @@
     );
   }
 
-  /* ── Fetch ──────────────────────────────────────────────────── */
   async function fetchChapters() {
     const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/chapters`;
     try {
@@ -637,7 +600,6 @@
     }
   }
 
-  /* ── Open chapter ───────────────────────────────────────────── */
   async function openChapter(chapter) {
     const slug   = toSlug(chapter);
     const sorted = getSorted();
@@ -672,7 +634,6 @@
     }
   }
 
-  /* ── Routing ────────────────────────────────────────────────── */
   function navigateTo(slug) {
     history.pushState({ slug }, '', `/${slug}`);
     handleRoute(slug);
@@ -694,7 +655,6 @@
     return window.location.pathname.replace(/^\//, '').trim() || null;
   }
 
-  /* ── Events ─────────────────────────────────────────────────── */
   searchInput.addEventListener('input', () => renderList(slugFromPath()));
 
   sortSelect.addEventListener('change', () => {
@@ -717,7 +677,6 @@
     handleRoute(slug);
   });
 
-  /* ── Boot ───────────────────────────────────────────────────── */
   (async () => {
     const slug = slugFromPath();
     await fetchChapters();
